@@ -98,8 +98,6 @@
 						this.removeFile(file);
 					},
 					success: function(file, response) {
-						response = response.split('|');
-
                         $fileDiv = '<tr class="image" data-url="' + response.filename + '" data-folder="' + response.folder + '">';
                         $fileDiv += '<td><img src="/image/' + response.folder + '/' + response.filename + '" alt="Imagen" /></td>';
                         $fileDiv += '<td><input type="text" name="{{ $field }}_title" placeholder="Título"></td>';
@@ -130,8 +128,6 @@
 						this.removeFile(file);
 					},
 					success: function(file, response) {
-						response = response.split('|');
-
                         $fileDiv = '<tr class="image" data-url="' + response.filename + '" data-folder="' + response.folder + '">';
                         $fileDiv += '<td><img src="/image/' + response.folder + '/' + response.filename + '" alt="Imagen" /></td>';
                         $fileDiv += '<td><input type="text" name="{{ $field }}_titles[]" placeholder="Título"></td>';
@@ -161,8 +157,6 @@
 						this.removeFile(file);
 					},
 					success: function(file, response) {
-						response = response.split('|');
-
                         $fileDiv = '<tr class="image" data-url="' + response.filename + '" data-folder="' + response.folder + '">';
                         $fileDiv += '<td>' + response.filename + '</td>';
                         $fileDiv += '<td><input type="text" name="{{ $field }}_title" placeholder="Título"></td>';
@@ -193,8 +187,6 @@
 						this.removeFile(file);
 					},
 					success: function(file, response) {
-						response = response.split('|');
-
                         $fileDiv = '<tr class="image" data-url="' + response.filename + '" data-folder="' + response.folder + '">';
                         $fileDiv += '<td>' + response.filename + '</td>';
                         $fileDiv += '<td><input type="text" name="{{ $field }}_titles[]" placeholder="Título"></td>';
