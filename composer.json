@@ -1,0 +1,31 @@
+{
+	"name": "davidcb/uploads",
+	"description": "Uploads management for Laravel",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "David Couto",
+			"email": "davidcouto@gmail.com"
+		}
+	],
+	"require": {
+		"spatie/eloquent-sortable": "3.*",
+		"intervention/image": "2.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Davidcb\\Uploads\\": "src/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Davidcb\\Uploads\\UsersServiceProvider"
+			]/*,
+			"aliases": {
+				"Uploads": "Davidcb\\Uploads\\Facade"
+			}*/
+		}
+	}
+}
