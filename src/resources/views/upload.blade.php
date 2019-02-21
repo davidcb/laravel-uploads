@@ -78,6 +78,9 @@
 @section('scripts')
 @parent
 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="{{ asset('vendor/laravel-uploads/js/laravel-uploads.js') }}"></script>
+
 <script>
 	$(function() {
 		switch ({{ $type }}) {
