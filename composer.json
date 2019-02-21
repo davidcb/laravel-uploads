@@ -21,7 +21,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Davidcb\\Uploads\\UsersServiceProvider"
+				"Davidcb\\Uploads\\UploadsServiceProvider"
 			]
 		}
 	}
