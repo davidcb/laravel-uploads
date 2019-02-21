@@ -112,12 +112,12 @@ class ImageController extends Controller {
     /**
      * Crops an image either automatically given a cropType
      * or from the given coordinates and dimensions
-     * @param  string $subdir
+     * @param  string $folder
      * @param  string $url
      * @param  int $cropType
      * @return \Illuminate\Http\Response
      */
-    public function crop($subdir, $url, $cropType)
+    public function crop($folder, $url, $cropType)
     {
 
         ini_set('memory_limit', '256M');
@@ -131,8 +131,8 @@ class ImageController extends Controller {
             $cuts = config('crop.types')[$cropType - 1];
 
             foreach ($cuts as $cut) {
-                if (Storage::exists($subdir . '/' . $url)) {
-                    $image = Image::make(Storage::get($subdir . '/' . $url));
+                if (Storage::exists($folder . '/' . $url)) {
+                    $image = Image::make(Storage::get($folder . '/' . $url));
 
                     if (request()->w && request()->h) {
                         $image->crop(round(request()->w), round(request()->h), round(request()->x), round(request()->y));
@@ -154,7 +154,7 @@ class ImageController extends Controller {
                     }
 
                     Storage::put(
-                        $subdir . '/' . $cut['prefix'] . $url,
+                        $folder . '/' . $cut['prefix'] . $url,
                         $image->__toString()
                     );
                 }
@@ -162,7 +162,14 @@ class ImageController extends Controller {
 
         }
 
-        echo '/verImagen/' . $subdir . '/small/' . $url;
+        $response = [
+            'message' => 'Successfuly cropped',
+            'folder' => $folder,
+            'filename' => $url,
+            'cropType' => $cropType
+        ];
+
+        return response()->json($response, 200);
 
     }
 
