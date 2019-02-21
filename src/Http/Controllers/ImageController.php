@@ -81,7 +81,11 @@ class ImageController extends Controller {
 
         $file = Storage::get($filePath);
 
-        return (new Response($file, 200))->header('Content-Type', 'image/svg+xml');
+        $headers = [
+            'Content-Type' => 'image/svg+xml'
+        ];
+
+        return $this->prepareResponse($file, $headers);
     }
 
     /**
