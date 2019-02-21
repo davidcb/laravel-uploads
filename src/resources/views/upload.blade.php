@@ -86,7 +86,7 @@
 					url: '/upload',
 					clickable: '.uploadFile_{{ $number }}',
 					maxFilesize: {{ config('upload.max_image_size') }}, // MB
-					acceptedFiles: {{ config('upload.accepted_image_extensions') }},
+					acceptedFiles: '{{ config('upload.accepted_image_extensions') }}',
 					init: function() {
 						this.on("sending", function(file, xhr, formData) {
 							formData.append("_token", "{{ csrf_token() }}");
@@ -118,7 +118,7 @@
 					url: '/upload',
 					clickable: '.uploadFile_{{ $number }}',
 					maxFilesize: {{ config('upload.max_image_size') }}, // MB
-					acceptedFiles: {{ config('upload.accepted_image_extensions') }},
+					acceptedFiles: '{{ config('upload.accepted_image_extensions') }}',
 					init: function() {
 						this.on("sending", function(file, xhr, formData) {
 							formData.append("_token", "{{ csrf_token() }}");
@@ -149,7 +149,7 @@
 					url: '/upload',
 					clickable: '.uploadFile_{{ $number }}',
 					maxFilesize: {{ config('upload.max_file_size') }}, // MB
-					acceptedFiles: {{ config('upload.accepted_file_extensions') }},
+					acceptedFiles: '{{ config('upload.accepted_file_extensions') }}',
 					init: function() {
 						this.on("sending", function(file, xhr, formData) {
 							formData.append("_token", "{{ csrf_token() }}");
@@ -181,7 +181,7 @@
 					url: '/upload',
 					clickable: '.uploadFile_{{ $number }}',
 					maxFilesize: {{ config('upload.max_file_size') }}, // MB
-					acceptedFiles: {{ config('upload.accepted_file_extensions') }},
+					acceptedFiles: '{{ config('upload.accepted_file_extensions') }}',
 					init: function() {
 						this.on("sending", function(file, xhr, formData) {
 							formData.append("_token", "{{ csrf_token() }}");
