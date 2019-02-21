@@ -22,7 +22,10 @@
 		"laravel": {
 			"providers": [
 				"Davidcb\\Uploads\\UploadsServiceProvider"
-			]
+			],
+			"aliases": {
+				"LaravelUploads": "Davidcb\\Uploads\\Facade"
+			}
 		}
 	}
 }
