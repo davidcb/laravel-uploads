@@ -8,7 +8,7 @@ use Davidcb\Uploads\Http\Controllers\ImageController;
 use Davidcb\Uploads\Models\File;
 use Illuminate\Support\Facades\Storage;
 
-class RoleController extends Controller
+class FileController extends Controller
 {
     /**
      * Uploads a file to storage
