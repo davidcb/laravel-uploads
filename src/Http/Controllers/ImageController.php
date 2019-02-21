@@ -30,9 +30,9 @@ class ImageController extends Controller {
         $image = Image::make($file);
 
         if ($filter != 'admin') {
-            if (cookie('resolution')) {
-                if ($image->width() > cookie('resolution')) {
-                    $image->widen(cookie('resolution'));
+            if (request()->cookie('resolution')) {
+                if ($image->width() > request()->cookie('resolution')) {
+                    $image->widen(request()->cookie('resolution'));
                 }
             }
         }
