@@ -54,12 +54,20 @@ class FileController extends Controller
      */
     public function deleteStorage($folder, $url)
     {
+        
+
         if ($folder && $url) {
-            $paths = array(
-                $folder . '/' . $url,
-                $folder . '/thumbs/' . $url,
-                $folder . '/small/' . $url,
-            );
+            $paths = [
+                $folder . '/' . $url
+            ];
+
+            $directories = Storage::directories($folder . '/');
+
+            if (sizeof($directories)) {
+                foreach ($directories as $directory) {
+                    $paths[] = $directory . '/' . $url;
+                }
+            }
 
             foreach ($paths as $path) {
                 if (Storage::exists($path)) {
@@ -79,11 +87,12 @@ class FileController extends Controller
      */
     public function deleteModel(File $file)
     {
-        $file = File::where('url', $url)->first();
         if ($file) {
+            $this->deleteStorage($file->folder, $file->url);
             $file->delete();
             return response()->json('Successfully deleted', 200);
         }
+
         return response()->json('File not found', 404);
     }
 
