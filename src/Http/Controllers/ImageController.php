@@ -2,6 +2,7 @@
 
 namespace Davidcb\Uploads\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Davidcb\Uploads\Models\Image as ImageModel;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
