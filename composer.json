@@ -29,5 +29,8 @@
 				"LaravelUploads": "Davidcb\\Uploads\\Facade"
 			}
 		}
-	}
+	},
+	"config": {
+        "preferred-install": "source"
+    }
 }
