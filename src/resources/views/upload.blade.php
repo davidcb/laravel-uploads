@@ -1,3 +1,10 @@
+@section('scripts')
+@parent
+
+<link href="{{ asset('vendor/laravel-uploads/css/laravel-uploads.css') }}" rel="stylesheet">
+
+@endsection
+
 @php
 	if (!isset($label)) {
 		switch ($type) {
