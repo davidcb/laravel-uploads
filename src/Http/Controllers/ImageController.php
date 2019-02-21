@@ -66,7 +66,7 @@ class ImageController extends Controller {
             'Content-Type' => $mime
         ];
 
-        return $this->prepareResponse($file);
+        return $this->prepareResponse($file, $headers);
     }
 
     /**
@@ -106,7 +106,7 @@ class ImageController extends Controller {
             'Content-Type' => 'image/jpeg'
         ];
 
-        return $this->prepareResponse($file);
+        return $this->prepareResponse($file, $headers);
     }
 
     /**
