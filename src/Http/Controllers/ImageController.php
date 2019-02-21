@@ -9,6 +9,13 @@ use Intervention\Image\Facades\Image;
 
 class ImageController extends Controller {
 
+    /**
+     * Shows an image with the given filters
+     * @param  string $folder
+     * @param  string $url
+     * @param  string $filter
+     * @return \Illuminate\Http\Response
+     */
     public function view($folder = null, $url = null, $filter = null) {
 
         $request = request()->instance();
@@ -61,6 +68,12 @@ class ImageController extends Controller {
         return $this->prepareResponse($file);
     }
 
+    /**
+     * Shows an svg image
+     * @param  string $folder
+     * @param  string $url
+     * @return \Illuminate\Http\Response
+     */
     public function viewSvg($folder = null, $url = null) {
 
         $filePath = $folder . '/' . $url;
@@ -70,9 +83,14 @@ class ImageController extends Controller {
         return (new Response($file, 200))->header('Content-Type', 'image/svg+xml');
     }
 
-    public function placeholder($type)
+    /**
+     * Shows a placeholdere image for a given cropType
+     * @param  int $cropType
+     * @return \Illuminate\Http\Response
+     */
+    public function placeholder($cropType)
     {
-        $cuts = config('crop.types')[$type - 1];
+        $cuts = config('crop.types')[$cropType - 1];
 
         $image = Image::canvas($cuts[0]['width'], $cuts[0]['height'], '#aaa');
 
@@ -90,7 +108,15 @@ class ImageController extends Controller {
         return $this->prepareResponse($file);
     }
 
-    public function crop($subdir, $url, $type)
+    /**
+     * Crops an image either automatically given a cropType
+     * or from the given coordinates and dimensions
+     * @param  string $subdir
+     * @param  string $url
+     * @param  int $cropType
+     * @return \Illuminate\Http\Response
+     */
+    public function crop($subdir, $url, $cropType)
     {
 
         ini_set('memory_limit', '256M');
@@ -101,7 +127,7 @@ class ImageController extends Controller {
 
         if (sizeof($extension) > 1 && (strtolower($extension[1]) == 'jpg' || strtolower($extension[1]) == 'jpeg' || strtolower($extension[1]) == 'png')) {
 
-            $cuts = config('crop.types')[$type - 1];
+            $cuts = config('crop.types')[$cropType - 1];
 
             foreach ($cuts as $cut) {
                 if (Storage::exists($subdir . '/' . $url)) {
@@ -139,6 +165,11 @@ class ImageController extends Controller {
 
     }
 
+    /**
+     * Deletes an Image model from the database
+     * @param  \Davidcb\Uploads\Models\Image $image
+     * @return \Illuminate\Http\Response
+     */
     public function deleteModel(ImageModel $image)
     {
         if ($image) {
@@ -153,6 +184,12 @@ class ImageController extends Controller {
         return response()->json('Image not found', 404);
     }
 
+    /**
+     * Deletes an image from storage
+     * @param  string $folder
+     * @param  string $url
+     * @return \Illuminate\Http\Response
+     */
     public function deleteStorage($folder, $url)
     {
         $fileController = new FileController;
@@ -164,6 +201,10 @@ class ImageController extends Controller {
         return response()->json('Error deleting image', 401);
     }
 
+    /**
+     * Sorts all images by the given positions
+     * @return \Illuminate\Http\Response
+     */
     public function sort()
     {
         $positions = explode(';', request()->positions);
@@ -180,12 +221,14 @@ class ImageController extends Controller {
         return response()->json('Successfully sorted', 200);
     }
 
+    /**
+     * Prepares the response to show the image
+     * @param  string $file
+     * @param  array $headers
+     * @return \Illuminate\Http\Response
+     */
     private function prepareResponse($file, $headers)
     {
-        $headers = [
-            'Content-Type' => 'image/jpeg'
-        ];
-
         $response = Response::make($file, 200, $headers);
 
         $filetime = time();
