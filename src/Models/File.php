@@ -16,7 +16,7 @@ class File extends Model implements Sortable
 		'sort_when_creating' => true,
 	];
 
-	protected $fillable = ['title', 'folder', 'subfolders', 'url', 'orderby', 'fileable_id', 'fileable_type'];
+	protected $fillable = ['title', 'folder', 'subfolders', 'url', 'type', 'orderby', 'fileable_id', 'fileable_type'];
 
 	public function fileable()
 	{

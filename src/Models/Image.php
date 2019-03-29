@@ -16,7 +16,7 @@ class Image extends Model implements Sortable
 		'sort_when_creating' => true,
 	];
 
-	protected $fillable = ['title', 'folder', 'subfolders', 'url', 'orderby', 'imageable_id', 'imageable_type'];
+	protected $fillable = ['title', 'folder', 'subfolders', 'url', 'type', 'orderby', 'imageable_id', 'imageable_type'];
 
 	public function imageable()
 	{

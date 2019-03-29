@@ -19,6 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('folder');
             $table->string('subfolders')->nullable();
             $table->string('url');
+            $table->tinyInteger('type')->unsigned();
             $table->integer('orderby')->unsigned();
             $table->integer('imageable_id')->unsigned();
             $table->string('imageable_type');
